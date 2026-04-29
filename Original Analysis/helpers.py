@@ -15,12 +15,13 @@ Usage:
 
 import os
 import warnings
+from typing import Optional
 import numpy as np
 import pandas as pd
 
 # Set to True  → use radiologist consensus ground truth (amb cases excluded)
 # Set to False → use original database ground truth (unchanged behavior)
-USE_RADIOLOGIST_GROUND_TRUTH = True
+USE_RADIOLOGIST_GROUND_TRUTH = False
 
 # How to handle KL1 (ambiguous/doubtful) images when radiologist GT is used:
 # "exclude"          — drop all trials for ambiguous images
@@ -36,7 +37,7 @@ RADIOLOGIST_AMBIGUOUS_ACTION = "exclude"
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(
     _THIS_DIR,
-    "..", "outputs", "csv", "export_2026.04.13_14:29_1", "participants.csv"
+    "..", "data", "participants.csv"
 )
 
 # Symptom Hungarian → English mapping
@@ -74,7 +75,7 @@ RADIO_GT_PATH = os.path.join(_THIS_DIR, "Radiologist_Ground_Truth.csv")
 # Data Loading & Cleaning
 # ─────────────────────────────────────────────
 
-def load_and_clean(csv_path: str | None = None) -> pd.DataFrame:
+def load_and_clean(csv_path: Optional[str] = None) -> pd.DataFrame:
     """
     Load the participants CSV and apply type casting + chronological sorting.
 
@@ -184,11 +185,11 @@ def _apply_radiologist_ground_truth(
          raise KeyError(f"Could not find image filename column in {RADIO_GT_PATH}.")
 
     # Ground Truth columns
-    raw_col = next((c for c in ["Ground_Truth_Raw", "Corrected Truth"] if c in radio_gt.columns), None)
+    raw_col = next((c for c in ["Ground_Truth_Raw", "Corrected Truth", "gt_plat_kl"] if c in radio_gt.columns), None)
     bin_col = next((c for c in ["Ground_Truth_Binary"] if c in radio_gt.columns), None)
     
     # Handle multi-physician case
-    rater_cols = [c for c in radio_gt.columns if "physician_" in c or "rater_" in c]
+    rater_cols = [c for c in radio_gt.columns if "physician_" in c or "rater_" in c or c.lower().startswith("rad")]
     if raw_col is None and rater_cols:
         # Calculate consensus as median (robust for KL scale)
         radio_gt["Ground_Truth_Raw"] = radio_gt[rater_cols].median(axis=1).round().astype(int)
