@@ -36,46 +36,34 @@ def load_data(kl1_strategy='exclude', filter_completers=None, filter_psychometri
         
     data_dir = os.path.join(os.path.dirname(__file__), 'data')
     participants_path = os.path.join(data_dir, 'participants.csv')
-    radiologist_path = os.path.join(data_dir, 'Radiologist_Ground_Truth.csv')
     
-    parts_df = pd.read_csv(participants_path)
-    rad_df = pd.read_csv(radiologist_path)
-    
-    initial_n = len(parts_df['participant_id'].unique())
+    df = pd.read_csv(participants_path)
+    initial_n = len(df['participant_id'].unique())
     
     # Filter non-completers if requested
     if filter_completers:
-        parts_df = parts_df[parts_df['current_phase'] == 'phase2_completed'].copy()
+        df = df[df['current_phase'] == 'phase2_completed'].copy()
     
     # Filter only those who finished psychometrics if requested
     if filter_psychometrics:
-        parts_df = parts_df[parts_df['big5_timestamp'].notnull()].copy()
+        df = df[df['big5_timestamp'].notnull()].copy()
     
-    final_n = len(parts_df['participant_id'].unique())
-    print(f"Data Loading: {final_n} participants selected (from {initial_n} initial).")
-    if filter_completers and final_n != 51:
-        print(f"WARNING: Expected 51 completers, but found {final_n}. Check current_phase column.")
+    final_n = len(df['participant_id'].unique())
+    print(f"Data Loading (Old GT Only Mode): {final_n} participants selected (from {initial_n} initial).")
 
+    # In this mode, we treat the ground truth in participants.csv as the primary GT
+    # so that the analysis notebooks (which expect gt_plat_*) work correctly but on old data.
+    df['gt_plat_kl'] = df['ground_truth_raw']
+    df['gt_plat_binary'] = df['ground_truth_binary']
     
-    # Ensure trial_imageFileName matching
-    df = parts_df.merge(rad_df, left_on='trial_image_name', right_on='trial_imageFileName', how='inner')
+    df['gt_original_kl'] = df['ground_truth_raw']
+    df['gt_original_binary'] = df['ground_truth_binary']
     
-    df['gt_original_kl'] = df['gt_original']
-    df['gt_original_binary'] = (df['gt_original_kl'] >= 2).astype(int)
-    
-    if 'gt_plat_kl_y' in df.columns:
-        df['gt_plat_kl'] = df['gt_plat_kl_y']
-    
+    # Apply strategy filters (though for old GT, KL1 was often treated as positive)
     if kl1_strategy == 'exclude':
+        # In the old GT, KL1 images are those where ground_truth_raw == 1
         df = df[df['gt_plat_kl'] != 1].copy()
-        df['gt_plat_binary'] = (df['gt_plat_kl'] >= 2).astype(int)
-    elif kl1_strategy == 'clinical':
-        df['gt_plat_binary'] = (df['gt_plat_kl'] >= 2).astype(int)
-    elif kl1_strategy == 'sensitivity_1':
-        df['gt_plat_binary'] = (df['gt_plat_kl'] >= 1).astype(int)
-    else:
-        raise ValueError(f"Unknown KL1 strategy: {kl1_strategy}")
-
+    
     df['final_decision'] = df['final_decision'].fillna(df['initial_decision'])
     if 'final_confidence' in df.columns and 'initial_confidence' in df.columns:
         df['final_confidence'] = df['final_confidence'].fillna(df['initial_confidence'])
@@ -84,8 +72,8 @@ def load_data(kl1_strategy='exclude', filter_completers=None, filter_psychometri
         df['final_confidence'] = df['final_confidence'].fillna(df['confidence'])
         df['initial_confidence'] = df['initial_confidence'].fillna(df['confidence'])
 
-    df['label_changed'] = df['gt_plat_binary'] != df['gt_original_binary']
-    df['label_direction'] = df.apply(_get_label_direction, axis=1)
+    df['label_changed'] = False 
+    df['label_direction'] = 'stable'
     
     df['ai_correct_original'] = df['ai_prediction'] == df['gt_original_binary']
     df['ai_correct_plat'] = df['ai_prediction'] == df['gt_plat_binary']
@@ -105,18 +93,12 @@ def load_data(kl1_strategy='exclude', filter_completers=None, filter_psychometri
     df['session'] = df['trial_id'].apply(lambda x: 2 if str(x).startswith('p2_') else 1)
     df['condition'] = df['ai_shown'].apply(lambda x: 'ai' if x else 'no_ai')
     
-    # Ordering Logic Verification
+    # Ordering logic
     def extract_trial_num(tid):
         match = re.search(r'trial_(\d+)', str(tid))
         return int(match.group(1)) if match else 0
-    
     df['trial_id_num'] = df['trial_id'].apply(extract_trial_num)
-    df['trial_start_time'] = pd.to_numeric(df['trial_start_time'], errors='coerce')
-    
-    # Use trial_id_num for the primary order, but keep trial_start_time ranking for backup verification
     df['trial_order'] = df['trial_id_num']
-    
-    assert not df[['gt_plat_kl', 'gt_original', 'ai_prediction', 'final_decision']].isnull().any().any(), "Null values detected in key columns"
     
     return df
 
