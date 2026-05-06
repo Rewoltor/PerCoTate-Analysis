@@ -30,7 +30,7 @@ def _get_label_direction(row):
     if orig >= 2 and plat == 1: return 'ambig_from_pos'
     return 'other'
 
-def load_data(kl1_strategy='exclude', filter_completers=None, filter_psychometrics=False):
+def load_data(kl1_strategy='exclude', filter_completers=True, filter_psychometrics=False):
     if filter_completers is None:
         filter_completers = FILTER_COMPLETERS
         
@@ -153,7 +153,7 @@ def image_summary(df):
         row = {
             'image_name': img,
             'gt_plat_kl': idf['gt_plat_kl'].iloc[0],
-            'gt_original': idf['gt_original'].iloc[0],
+            'gt_original': idf['gt_original_kl'].iloc[0],
             'label_changed': idf['label_changed'].iloc[0],
             'label_direction': idf['label_direction'].iloc[0],
             'ai_confidence': idf['ai_confidence'].mean(),

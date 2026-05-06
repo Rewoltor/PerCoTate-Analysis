@@ -4,4 +4,10 @@ __pycache__/
 .ipynb_checkpoints/
 scratch/
 *.pyc
+/report_assets
+
+.venv/
+/figures
+/Analysis_context
+
 

@@ -32,19 +32,7 @@ Error in NB0_data_quality.ipynb: 'gt_original'
 
 ```text
 --- Radiologist Inter-rater Reliability ---
-Fleiss Kappa (0-4 KL grades): 0.181
-95% CI: [0.042, 0.300]
-
-Fleiss Kappa (Binary, excluding KL1): 0.517
-95% CI: [0.175, 0.752]
-
---- Pairwise Cohen's Kappa ---
-Rad1 vs rad2: 0.163 (95% CI: [-0.003, 0.340])
-Rad1 vs rad3: 0.117 (95% CI: [-0.075, 0.301])
-rad2 vs rad3: 0.298 (95% CI: [0.095, 0.486])
-
-Exact Agreement: 16.0%
-Exact + Adjacent (within 1 grade) Agreement: 84.0%
+Error in NB0_data_quality.ipynb: [Errno 2] No such file or directory: 'data/Radiologist_Ground_Truth.csv'
 ```
 
 ## Section 3: Ground Truth Transition Analysis
@@ -176,14 +164,14 @@ Ensuring that the groups were evenly assigned.
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
-| strategy      | GT       |   acc |   sens |   spec |   ppv |   npv |    f1 |   auc |
-|:--------------|:---------|------:|-------:|-------:|------:|------:|------:|------:|
-| exclude       | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 | 0.762 |
-| exclude       | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 | 0.762 |
-| clinical      | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 | 0.762 |
-| clinical      | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 | 0.762 |
-| sensitivity_1 | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 | 0.762 |
-| sensitivity_1 | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 | 0.762 |
+| strategy      | GT       |   acc |   sens |   spec |   ppv |   npv |    f1 |
+|:--------------|:---------|------:|-------:|-------:|------:|------:|------:|
+| exclude       | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| exclude       | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| clinical      | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| clinical      | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| sensitivity_1 | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| sensitivity_1 | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
 
 AI accuracy on the 5 false-negative images (predicted positive):
 Strategy exclude: nan%
