@@ -24,7 +24,25 @@ Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
 Strategy: clinical | Shape: (5100, 79) | Images: 50
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
 Strategy: sensitivity_1 | Shape: (5100, 79) | Images: 50
-Error in NB0_data_quality.ipynb: 'gt_original'
+
+--- Integrity Checks (Exclude Strategy) ---
+Participants: 51
+Trials: 5100
+Images: 50
+
+Session distribution:
+session
+2    2550
+1    2550
+Name: count, dtype: int64
+
+Treatment group balance:
+treatment_group
+0    27
+1    24
+Name: participant_id, dtype: int64
+
+All original binary labels match between data sources.
 ```
 
 ## Section 2: Radiologist Inter-rater Reliability
@@ -40,7 +58,52 @@ Error in NB0_data_quality.ipynb: [Errno 2] No such file or directory: 'data/Radi
 
 ```text
 --- 5x5 Transition Matrix (All 50 Images) ---
-Error in NB0_data_quality.ipynb: 'gt_original'
+gt_plat_kl    0   2  3  4  All
+gt_original                   
+0            25   0  0  0   25
+2             0  15  0  0   15
+3             0   0  9  0    9
+4             0   0  0  1    1
+All          25  15  9  1   50
+
+--- 3-Way Transition Table (All 50 Images) ---
+plat_3way   0   2
+orig_3way        
+0          25   0
+2           0  25
+```
+
+
+```text
+[Plotly Export Failed: Failed to start Kaleido subprocess. Error stream:
+
+[0506/084933.973008:WARNING:resource_bundle.cc(431)] locale_file_path.empty() for locale en-US
+[0506/084934.023827:FATAL:mach_port_rendezvous.cc(142)] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.36257: Permission denied (1100)
+0   kaleido                             0x00000001037f1c5c base::debug::CollectStackTrace(void**, unsigned long) + 12
+1   kaleido                             0x000000010373b0a4 base::debug::StackTrace::StackTrace() + 24
+2   kaleido                             0x000000010374ecb0 logging::LogMessage::~LogMessage() + 188
+3   kaleido                             0x0000000103803a50 logging::BootstrapLogMessage::~BootstrapLogMessage() + 168
+4   kaleido                             0x0000000103804208 base::MachPortRendezvousServer::MachPortRendezvousServer() + 520
+5   kaleido                             0x0000000103803bdc base::MachPortRendezvousServer::GetInstance() + 72
+6   kaleido                             0x0000000103809070 base::LaunchProcess(std::__1::vector<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::allocator<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > > > const&, base::LaunchOptions const&) + 1184
+7   kaleido                             0x00000001021802e0 content::internal::ChildProcessLauncherHelper::LaunchProcessOnLauncherThread(base::LaunchOptions const&, std::__1::unique_ptr<content::PosixFileDescriptorInfo, std::__1::default_delete<content::PosixFileDescriptorInfo> >, bool*, int*) + 80
+8   kaleido                             0x0000000101c4b15c content::internal::ChildProcessLauncherHelper::LaunchOnLauncherThread() + 176
+9   kaleido                             0x00000001037a3064 base::TaskAnnotator::RunTask(char const*, base::PendingTask*) + 304
+10  kaleido                             0x00000001037c3f1c base::internal::TaskTracker::RunBlockShutdown(base::internal::Task*) + 28
+11  kaleido                             0x00000001037c3860 base::internal::TaskTracker::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 716
+12  kaleido                             0x00000001037fc7e0 base::internal::TaskTrackerPosix::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 140
+13  kaleido                             0x00000001037c3324 base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource) + 440
+14  kaleido                             0x00000001037ccfa0 base::internal::WorkerThread::RunWorker() + 656
+15  kaleido                             0x00000001037cccf4 base::internal::WorkerThread::RunDedicatedWorker() + 16
+16  kaleido                             0x00000001037fcd58 base::(anonymous namespace)::ThreadFunc(void*) + 108
+17  libsystem_pthread.dylib             0x0000000183487c58 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000183482c1c thread_start + 8
+Task trace:
+0   kaleido                             0x0000000101c4afd8 content::internal::ChildProcessLauncherHelper::StartLaunchOnClientThread() + 244
+1   kaleido                             0x000000010220be5c content::VizProcessTransportFactory::ConnectHostFrameSinkManager() + 424
+
+/Users/baltaymarci/Documents/Feel Good AI/Analysis/venv/lib/python3.9/site-packages/kaleido/executable/kaleido: line 5: 36257 Trace/BPT trap: 5       "./bin/kaleido" "$@"
+]
 ```
 
 ## Section 4: AI Confidence on Mislabeled Images
@@ -49,7 +112,10 @@ Error in NB0_data_quality.ipynb: 'gt_original'
 ```text
 --- AI Confidence on Mislabeled Images ---
 Mean AI Confidence by Direction:
-Error in NB0_data_quality.ipynb: name 'df_img' is not defined
+label_direction
+stable    0.612558
+Name: ai_confidence, dtype: float64
+Error in NB0_data_quality.ipynb: List of boxplot statistics and `positions` values must have same the length
 ```
 
 ## Section 5: Participant Data Quality
@@ -73,7 +139,14 @@ symptom1                2550
 symptom2                2550
 dtype: int64
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
-Error in NB0_data_quality.ipynb: 'gt_original'
+
+Data Quality Report Card:
+| Metric                               |   Value |
+|:-------------------------------------|--------:|
+| Total Participants                   |      51 |
+| Completed Both Sessions              |      51 |
+| Flagged Speeders                     |       0 |
+| Images with GT Shifts (Full Dataset) |       0 |
 ```
 
 
@@ -261,7 +334,7 @@ McNemar test for AI Influence: p=0.0000
 
 ```text
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
-Error in NB2_annotation_experiment.ipynb: 'gt_original'
+Setup Complete: Data loaded using 'exclude' strategy.
 ```
 
 ## Section 1: Primary Accuracy Analysis
@@ -426,7 +499,7 @@ Wilcoxon test (Session 1 vs 2): W=70.5, p=0.0397
 
 ```text
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
-Error in NB3_psychometrics.ipynb: 'gt_original'
+Setup Complete. N=51 participants loaded.
 ```
 
 ## Section 1: Descriptive Psychometrics
@@ -434,7 +507,34 @@ Error in NB3_psychometrics.ipynb: 'gt_original'
 
 ```text
 --- Descriptive Psychometrics ---
-Error in NB3_psychometrics.ipynb: name 'b5_cols' is not defined
+       big5_open_mindedness  ...   iq_score
+count             51.000000  ...  51.000000
+mean               3.774118  ...   1.117647
+std                0.627905  ...   1.632753
+min                2.500000  ...   0.000000
+25%                3.330000  ...   0.000000
+50%                3.670000  ...   0.000000
+75%                4.210000  ...   2.000000
+max                4.920000  ...   6.000000
+
+[8 rows x 6 columns]
+```
+
+
+![Analysis Plot](report_assets/plot_7.png)
+
+
+```text
+
+Variance Inflation Factors (VIF > 5 indicates concern):
+                 Variable         VIF
+0                   const  141.316294
+1    big5_open_mindedness    1.468194
+2  big5_conscientiousness    1.349282
+3       big5_extraversion    1.366464
+4      big5_agreeableness    1.254144
+5        big5_neuroticism    1.258709
+6                iq_score    1.065864
 ```
 
 ## Section 2: Psychometrics and Accuracy
@@ -442,7 +542,31 @@ Error in NB3_psychometrics.ipynb: name 'b5_cols' is not defined
 
 ```text
 --- Spearman Correlations (FDR Corrected) ---
-Error in NB3_psychometrics.ipynb: name 'b5_cols' is not defined
+   Condition                   Trait         r     p_raw     p_fdr
+2         ai       big5_extraversion -0.516408  0.000105  0.001258
+0         ai    big5_open_mindedness -0.132947  0.352355  0.745699
+1         ai  big5_conscientiousness  0.163732  0.250944  0.745699
+3         ai      big5_agreeableness  0.047661  0.739798  0.745699
+4         ai        big5_neuroticism -0.185311  0.192955  0.745699
+5         ai                iq_score  0.070979  0.620634  0.745699
+6      no_ai    big5_open_mindedness  0.069106  0.629906  0.745699
+7      no_ai  big5_conscientiousness  0.103968  0.467812  0.745699
+8      no_ai       big5_extraversion  0.046542  0.745699  0.745699
+9      no_ai      big5_agreeableness -0.125029  0.382017  0.745699
+10     no_ai        big5_neuroticism -0.170688  0.231093  0.745699
+11     no_ai                iq_score -0.068782  0.631518  0.745699
+
+--- GEE Model: Accuracy ~ Psychometrics + Condition ---
+==========================================================================================
+                             coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------
+Intercept                  0.6648      0.285      2.332      0.020       0.106       1.224
+C(condition)[T.no_ai]     -0.2088      0.066     -3.171      0.002      -0.338      -0.080
+iq_score                  -0.0005      0.023     -0.020      0.984      -0.045       0.044
+big5_neuroticism          -0.0470      0.049     -0.957      0.339      -0.143       0.049
+big5_conscientiousness     0.0788      0.049      1.605      0.109      -0.017       0.175
+big5_open_mindedness      -0.0420      0.070     -0.600      0.548      -0.179       0.095
+==========================================================================================
 ```
 
 ## Section 3: Psychometrics and Reliance Behavior
@@ -450,7 +574,24 @@ Error in NB3_psychometrics.ipynb: name 'b5_cols' is not defined
 
 ```text
 --- Reliance Behavior Predictors ---
-Error in NB3_psychometrics.ipynb: name 'b5_cols' is not defined
+                     Trait        Outcome         r     p_raw     p_fdr
+2   big5_conscientiousness  over_reliance -0.175229  0.218734  0.441361
+4        big5_extraversion  over_reliance  0.174502  0.220680  0.441361
+8         big5_neuroticism  over_reliance -0.218160  0.124063  0.441361
+0     big5_open_mindedness  over_reliance -0.145794  0.307335  0.461002
+6       big5_agreeableness  over_reliance -0.104309  0.466344  0.546083
+10                iq_score  over_reliance  0.086512  0.546083  0.546083
+
+--- GEE Model: Over-Reliance ~ Psychometrics ---
+====================================================================================
+                       coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Intercept           -1.4351      0.137    -10.462      0.000      -1.704      -1.166
+iq_score            -0.0088      0.028     -0.319      0.750      -0.063       0.045
+big5_neuroticism    -0.0830      0.045     -1.846      0.065      -0.171       0.005
+====================================================================================
+
+One-sided p-value for Neuroticism predicting higher Over-Reliance: p = 0.9675
 ```
 
 ## Section 4: Facet-level Analysis
@@ -458,15 +599,25 @@ Error in NB3_psychometrics.ipynb: name 'b5_cols' is not defined
 
 ```text
 --- Facet-Level Exploratory Analysis ---
-Error in NB3_psychometrics.ipynb: name 'facet_cols' is not defined
 ```
+
+
+![Analysis Plot](report_assets/plot_8.png)
 
 ## Section 5: Robustness Under GT Switch
 
 
 ```text
 --- GT Switch Robustness ---
-Error in NB3_psychometrics.ipynb: name 'm_acc' is not defined
+                        Platinum (OR)  ...  Original (p)
+Intercept                       1.944  ...         0.020
+C(condition)[T.no_ai]           0.812  ...         0.002
+iq_score                        1.000  ...         0.984
+big5_neuroticism                0.954  ...         0.339
+big5_conscientiousness          1.082  ...         0.109
+big5_open_mindedness            0.959  ...         0.548
+
+[6 rows x 4 columns]
 ```
 
 
@@ -475,7 +626,7 @@ Error in NB3_psychometrics.ipynb: name 'm_acc' is not defined
 
 # NB4: Integrated Predictive Models
 - **Question:** What is the combined effect of condition, user traits, and image difficulty on human accuracy? Does confidence mediate the AI benefit?
-- **Primary GT:** Platinum Consensus
+- **Primary GT:** Old GT
 - **KL1 Strategy:** Exclude (Strategy A)
 - **Data Note:** The analysis is strictly performed on the **N=51 completer cohort**. Dropouts are excluded to maintain cohort integrity across all predictive models.
 - **Data Note:** This notebook uses the finalized **N=51 completer cohort**. All non-completers are excluded.
@@ -545,7 +696,7 @@ C(condition, Treatment('no_ai'))[T.ai]:gt_plat_kl    -0.0042      0.081     -0.0
 ```
 
 
-![Analysis Plot](report_assets/plot_7.png)
+![Analysis Plot](report_assets/plot_9.png)
 
 ## Section 4: Summary Results Table
 
@@ -580,7 +731,6 @@ Setup complete. Ready to generate figures.
 ```text
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
 Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
-Error in NB5_figures.ipynb: 'gt_original'
 ```
 
 ## Figure 1: GT Transition Sankey
@@ -588,7 +738,40 @@ Error in NB5_figures.ipynb: 'gt_original'
 
 ```text
 Generating Fig 1: GT Transition Sankey
-Error in NB5_figures.ipynb: name 'df_img' is not defined
+kaleido export failed, you may need to install kaleido. Returning HTML instead.
+```
+
+
+```text
+[Plotly Export Failed: Failed to start Kaleido subprocess. Error stream:
+
+[0506/085332.049075:WARNING:resource_bundle.cc(431)] locale_file_path.empty() for locale en-US
+[0506/085332.086626:FATAL:mach_port_rendezvous.cc(142)] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.36445: Permission denied (1100)
+0   kaleido                             0x00000001038e1c5c base::debug::CollectStackTrace(void**, unsigned long) + 12
+1   kaleido                             0x000000010382b0a4 base::debug::StackTrace::StackTrace() + 24
+2   kaleido                             0x000000010383ecb0 logging::LogMessage::~LogMessage() + 188
+3   kaleido                             0x00000001038f3a50 logging::BootstrapLogMessage::~BootstrapLogMessage() + 168
+4   kaleido                             0x00000001038f4208 base::MachPortRendezvousServer::MachPortRendezvousServer() + 520
+5   kaleido                             0x00000001038f3bdc base::MachPortRendezvousServer::GetInstance() + 72
+6   kaleido                             0x00000001038f9070 base::LaunchProcess(std::__1::vector<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::allocator<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > > > const&, base::LaunchOptions const&) + 1184
+7   kaleido                             0x00000001022702e0 content::internal::ChildProcessLauncherHelper::LaunchProcessOnLauncherThread(base::LaunchOptions const&, std::__1::unique_ptr<content::PosixFileDescriptorInfo, std::__1::default_delete<content::PosixFileDescriptorInfo> >, bool*, int*) + 80
+8   kaleido                             0x0000000101d3b15c content::internal::ChildProcessLauncherHelper::LaunchOnLauncherThread() + 176
+9   kaleido                             0x0000000103893064 base::TaskAnnotator::RunTask(char const*, base::PendingTask*) + 304
+10  kaleido                             0x00000001038b3f1c base::internal::TaskTracker::RunBlockShutdown(base::internal::Task*) + 28
+11  kaleido                             0x00000001038b3860 base::internal::TaskTracker::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 716
+12  kaleido                             0x00000001038ec7e0 base::internal::TaskTrackerPosix::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 140
+13  kaleido                             0x00000001038b3324 base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource) + 440
+14  kaleido                             0x00000001038bcfa0 base::internal::WorkerThread::RunWorker() + 656
+15  kaleido                             0x00000001038bccf4 base::internal::WorkerThread::RunDedicatedWorker() + 16
+16  kaleido                             0x00000001038ecd58 base::(anonymous namespace)::ThreadFunc(void*) + 108
+17  libsystem_pthread.dylib             0x0000000183487c58 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000183482c1c thread_start + 8
+Task trace:
+0   kaleido                             0x0000000101d3afd8 content::internal::ChildProcessLauncherHelper::StartLaunchOnClientThread() + 244
+1   kaleido                             0x00000001022fbe5c content::VizProcessTransportFactory::ConnectHostFrameSinkManager() + 424
+
+/Users/baltaymarci/Documents/Feel Good AI/Analysis/venv/lib/python3.9/site-packages/kaleido/executable/kaleido: line 5: 36445 Trace/BPT trap: 5       "./bin/kaleido" "$@"
+]
 ```
 
 ## Figure 2: Label Noise Summary (Two-panel)
@@ -596,8 +779,10 @@ Error in NB5_figures.ipynb: name 'df_img' is not defined
 
 ```text
 Generating Fig 2: Label Noise Summary
-Error in NB5_figures.ipynb: name 'df_img' is not defined
 ```
+
+
+![Analysis Plot](report_assets/plot_10.png)
 
 ## Figure 3: Accuracy Paradox
 
@@ -608,7 +793,7 @@ Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
 ```
 
 
-![Analysis Plot](report_assets/plot_8.png)
+![Analysis Plot](report_assets/plot_11.png)
 
 ## Figure 4: Reliance Taxonomy
 
@@ -618,14 +803,14 @@ Generating Fig 4: Reliance Taxonomy
 ```
 
 
-![Analysis Plot](report_assets/plot_9.png)
+![Analysis Plot](report_assets/plot_12.png)
 
 ## Figure 5: AI Confidence on Mislabeled Images
 
 
 ```text
 Generating Fig 5: AI Confidence on Mislabeled Images
-Error in NB5_figures.ipynb: name 'df_img' is not defined
+Error in NB5_figures.ipynb: List of boxplot statistics and `positions` values must have same the length
 ```
 
 ## Figure 6: Decision Flip Map
@@ -633,8 +818,10 @@ Error in NB5_figures.ipynb: name 'df_img' is not defined
 
 ```text
 Generating Fig 6: Decision Flip Map
-Error in NB5_figures.ipynb: name 'df_img' is not defined
 ```
+
+
+![Analysis Plot](report_assets/plot_13.png)
 
 ## Figure 7: Calibration Curves
 
@@ -644,7 +831,7 @@ Generating Fig 7: Calibration Curves
 ```
 
 
-![Analysis Plot](report_assets/plot_10.png)
+![Analysis Plot](report_assets/plot_14.png)
 
 ## Figure 8: Psychometric Heatmap
 
@@ -654,22 +841,24 @@ Generating Fig 8: Psychometric Heatmap
 ```
 
 
-![Analysis Plot](report_assets/plot_11.png)
+![Analysis Plot](report_assets/plot_15.png)
 
 ## Figure 9: Learning Curves
 
 
 ```text
 Generating Fig 9: Learning Curves
-Error in NB5_figures.ipynb: 'Column not found: human_correct_plat_int'
 ```
+
+
+![Analysis Plot](report_assets/plot_16.png)
 
 ## Figure 10: Model Comparison
 
 
 ```text
 Generating Fig 10: Model Comparison Coefficient Plot
-Error in NB5_figures.ipynb: Error evaluating factor: NameError: name 'human_correct_plat_int' is not defined
-    human_correct_plat_int ~ C(condition, Treatment('no_ai')) + iq_score + big5_neuroticism + big5_conscientiousness + gt_plat_kl + ai_correct_plat
-    ^^^^^^^^^^^^^^^^^^^^^^
 ```
+
+
+![Analysis Plot](report_assets/plot_17.png)

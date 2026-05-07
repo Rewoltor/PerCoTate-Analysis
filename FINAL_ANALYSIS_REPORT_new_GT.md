@@ -91,32 +91,32 @@ Binomial test for directional bias (FN > FP): p=0.0312
 ```text
 [Plotly Export Failed: Failed to start Kaleido subprocess. Error stream:
 
-[0504/095819.976116:WARNING:resource_bundle.cc(431)] locale_file_path.empty() for locale en-US
-[0504/095820.062865:FATAL:mach_port_rendezvous.cc(142)] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.24166: Permission denied (1100)
-0   kaleido                             0x00000001071edc5c base::debug::CollectStackTrace(void**, unsigned long) + 12
-1   kaleido                             0x00000001071370a4 base::debug::StackTrace::StackTrace() + 24
-2   kaleido                             0x000000010714acb0 logging::LogMessage::~LogMessage() + 188
-3   kaleido                             0x00000001071ffa50 logging::BootstrapLogMessage::~BootstrapLogMessage() + 168
-4   kaleido                             0x0000000107200208 base::MachPortRendezvousServer::MachPortRendezvousServer() + 520
-5   kaleido                             0x00000001071ffbdc base::MachPortRendezvousServer::GetInstance() + 72
-6   kaleido                             0x0000000107205070 base::LaunchProcess(std::__1::vector<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::allocator<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > > > const&, base::LaunchOptions const&) + 1184
-7   kaleido                             0x0000000105b7c2e0 content::internal::ChildProcessLauncherHelper::LaunchProcessOnLauncherThread(base::LaunchOptions const&, std::__1::unique_ptr<content::PosixFileDescriptorInfo, std::__1::default_delete<content::PosixFileDescriptorInfo> >, bool*, int*) + 80
-8   kaleido                             0x000000010564715c content::internal::ChildProcessLauncherHelper::LaunchOnLauncherThread() + 176
-9   kaleido                             0x000000010719f064 base::TaskAnnotator::RunTask(char const*, base::PendingTask*) + 304
-10  kaleido                             0x00000001071bff1c base::internal::TaskTracker::RunBlockShutdown(base::internal::Task*) + 28
-11  kaleido                             0x00000001071bf860 base::internal::TaskTracker::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 716
-12  kaleido                             0x00000001071f87e0 base::internal::TaskTrackerPosix::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 140
-13  kaleido                             0x00000001071bf324 base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource) + 440
-14  kaleido                             0x00000001071c8fa0 base::internal::WorkerThread::RunWorker() + 656
-15  kaleido                             0x00000001071c8cf4 base::internal::WorkerThread::RunDedicatedWorker() + 16
-16  kaleido                             0x00000001071f8d58 base::(anonymous namespace)::ThreadFunc(void*) + 108
+[0506/084927.984392:WARNING:resource_bundle.cc(431)] locale_file_path.empty() for locale en-US
+[0506/084928.047905:FATAL:mach_port_rendezvous.cc(142)] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.36237: Permission denied (1100)
+0   kaleido                             0x000000010744dc5c base::debug::CollectStackTrace(void**, unsigned long) + 12
+1   kaleido                             0x00000001073970a4 base::debug::StackTrace::StackTrace() + 24
+2   kaleido                             0x00000001073aacb0 logging::LogMessage::~LogMessage() + 188
+3   kaleido                             0x000000010745fa50 logging::BootstrapLogMessage::~BootstrapLogMessage() + 168
+4   kaleido                             0x0000000107460208 base::MachPortRendezvousServer::MachPortRendezvousServer() + 520
+5   kaleido                             0x000000010745fbdc base::MachPortRendezvousServer::GetInstance() + 72
+6   kaleido                             0x0000000107465070 base::LaunchProcess(std::__1::vector<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::allocator<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > > > const&, base::LaunchOptions const&) + 1184
+7   kaleido                             0x0000000105ddc2e0 content::internal::ChildProcessLauncherHelper::LaunchProcessOnLauncherThread(base::LaunchOptions const&, std::__1::unique_ptr<content::PosixFileDescriptorInfo, std::__1::default_delete<content::PosixFileDescriptorInfo> >, bool*, int*) + 80
+8   kaleido                             0x00000001058a715c content::internal::ChildProcessLauncherHelper::LaunchOnLauncherThread() + 176
+9   kaleido                             0x00000001073ff064 base::TaskAnnotator::RunTask(char const*, base::PendingTask*) + 304
+10  kaleido                             0x000000010741ff1c base::internal::TaskTracker::RunBlockShutdown(base::internal::Task*) + 28
+11  kaleido                             0x000000010741f860 base::internal::TaskTracker::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 716
+12  kaleido                             0x00000001074587e0 base::internal::TaskTrackerPosix::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 140
+13  kaleido                             0x000000010741f324 base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource) + 440
+14  kaleido                             0x0000000107428fa0 base::internal::WorkerThread::RunWorker() + 656
+15  kaleido                             0x0000000107428cf4 base::internal::WorkerThread::RunDedicatedWorker() + 16
+16  kaleido                             0x0000000107458d58 base::(anonymous namespace)::ThreadFunc(void*) + 108
 17  libsystem_pthread.dylib             0x0000000183487c58 _pthread_start + 136
 18  libsystem_pthread.dylib             0x0000000183482c1c thread_start + 8
 Task trace:
-0   kaleido                             0x0000000105646fd8 content::internal::ChildProcessLauncherHelper::StartLaunchOnClientThread() + 244
-1   kaleido                             0x0000000105c07e5c content::VizProcessTransportFactory::ConnectHostFrameSinkManager() + 424
+0   kaleido                             0x00000001058a6fd8 content::internal::ChildProcessLauncherHelper::StartLaunchOnClientThread() + 244
+1   kaleido                             0x0000000105e67e5c content::VizProcessTransportFactory::ConnectHostFrameSinkManager() + 424
 
-/Users/baltaymarci/Documents/Feel Good AI/Analysis/venv/lib/python3.9/site-packages/kaleido/executable/kaleido: line 5: 24166 Trace/BPT trap: 5       "./bin/kaleido" "$@"
+/Users/baltaymarci/Documents/Feel Good AI/Analysis/venv/lib/python3.9/site-packages/kaleido/executable/kaleido: line 5: 36237 Trace/BPT trap: 5       "./bin/kaleido" "$@"
 ]
 ```
 
@@ -797,32 +797,32 @@ kaleido export failed, you may need to install kaleido. Returning HTML instead.
 ```text
 [Plotly Export Failed: Failed to start Kaleido subprocess. Error stream:
 
-[0504/095942.797483:WARNING:resource_bundle.cc(431)] locale_file_path.empty() for locale en-US
-[0504/095942.835220:FATAL:mach_port_rendezvous.cc(142)] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.24210: Permission denied (1100)
-0   kaleido                             0x00000001072adc5c base::debug::CollectStackTrace(void**, unsigned long) + 12
-1   kaleido                             0x00000001071f70a4 base::debug::StackTrace::StackTrace() + 24
-2   kaleido                             0x000000010720acb0 logging::LogMessage::~LogMessage() + 188
-3   kaleido                             0x00000001072bfa50 logging::BootstrapLogMessage::~BootstrapLogMessage() + 168
-4   kaleido                             0x00000001072c0208 base::MachPortRendezvousServer::MachPortRendezvousServer() + 520
-5   kaleido                             0x00000001072bfbdc base::MachPortRendezvousServer::GetInstance() + 72
-6   kaleido                             0x00000001072c5070 base::LaunchProcess(std::__1::vector<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::allocator<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > > > const&, base::LaunchOptions const&) + 1184
-7   kaleido                             0x0000000105c3c2e0 content::internal::ChildProcessLauncherHelper::LaunchProcessOnLauncherThread(base::LaunchOptions const&, std::__1::unique_ptr<content::PosixFileDescriptorInfo, std::__1::default_delete<content::PosixFileDescriptorInfo> >, bool*, int*) + 80
-8   kaleido                             0x000000010570715c content::internal::ChildProcessLauncherHelper::LaunchOnLauncherThread() + 176
-9   kaleido                             0x000000010725f064 base::TaskAnnotator::RunTask(char const*, base::PendingTask*) + 304
-10  kaleido                             0x000000010727ff1c base::internal::TaskTracker::RunBlockShutdown(base::internal::Task*) + 28
-11  kaleido                             0x000000010727f860 base::internal::TaskTracker::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 716
-12  kaleido                             0x00000001072b87e0 base::internal::TaskTrackerPosix::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 140
-13  kaleido                             0x000000010727f324 base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource) + 440
-14  kaleido                             0x0000000107288fa0 base::internal::WorkerThread::RunWorker() + 656
-15  kaleido                             0x0000000107288cf4 base::internal::WorkerThread::RunDedicatedWorker() + 16
-16  kaleido                             0x00000001072b8d58 base::(anonymous namespace)::ThreadFunc(void*) + 108
+[0506/085151.433215:WARNING:resource_bundle.cc(431)] locale_file_path.empty() for locale en-US
+[0506/085151.487126:FATAL:mach_port_rendezvous.cc(142)] Check failed: kr == KERN_SUCCESS. bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer.36342: Permission denied (1100)
+0   kaleido                             0x00000001074e9c5c base::debug::CollectStackTrace(void**, unsigned long) + 12
+1   kaleido                             0x00000001074330a4 base::debug::StackTrace::StackTrace() + 24
+2   kaleido                             0x0000000107446cb0 logging::LogMessage::~LogMessage() + 188
+3   kaleido                             0x00000001074fba50 logging::BootstrapLogMessage::~BootstrapLogMessage() + 168
+4   kaleido                             0x00000001074fc208 base::MachPortRendezvousServer::MachPortRendezvousServer() + 520
+5   kaleido                             0x00000001074fbbdc base::MachPortRendezvousServer::GetInstance() + 72
+6   kaleido                             0x0000000107501070 base::LaunchProcess(std::__1::vector<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >, std::__1::allocator<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > > > const&, base::LaunchOptions const&) + 1184
+7   kaleido                             0x0000000105e782e0 content::internal::ChildProcessLauncherHelper::LaunchProcessOnLauncherThread(base::LaunchOptions const&, std::__1::unique_ptr<content::PosixFileDescriptorInfo, std::__1::default_delete<content::PosixFileDescriptorInfo> >, bool*, int*) + 80
+8   kaleido                             0x000000010594315c content::internal::ChildProcessLauncherHelper::LaunchOnLauncherThread() + 176
+9   kaleido                             0x000000010749b064 base::TaskAnnotator::RunTask(char const*, base::PendingTask*) + 304
+10  kaleido                             0x00000001074bbf1c base::internal::TaskTracker::RunBlockShutdown(base::internal::Task*) + 28
+11  kaleido                             0x00000001074bb860 base::internal::TaskTracker::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 716
+12  kaleido                             0x00000001074f47e0 base::internal::TaskTrackerPosix::RunTask(base::internal::Task, base::internal::TaskSource*, base::TaskTraits const&) + 140
+13  kaleido                             0x00000001074bb324 base::internal::TaskTracker::RunAndPopNextTask(base::internal::RegisteredTaskSource) + 440
+14  kaleido                             0x00000001074c4fa0 base::internal::WorkerThread::RunWorker() + 656
+15  kaleido                             0x00000001074c4cf4 base::internal::WorkerThread::RunDedicatedWorker() + 16
+16  kaleido                             0x00000001074f4d58 base::(anonymous namespace)::ThreadFunc(void*) + 108
 17  libsystem_pthread.dylib             0x0000000183487c58 _pthread_start + 136
 18  libsystem_pthread.dylib             0x0000000183482c1c thread_start + 8
 Task trace:
-0   kaleido                             0x0000000105706fd8 content::internal::ChildProcessLauncherHelper::StartLaunchOnClientThread() + 244
-1   kaleido                             0x0000000105cc7e5c content::VizProcessTransportFactory::ConnectHostFrameSinkManager() + 424
+0   kaleido                             0x0000000105942fd8 content::internal::ChildProcessLauncherHelper::StartLaunchOnClientThread() + 244
+1   kaleido                             0x0000000105f03e5c content::VizProcessTransportFactory::ConnectHostFrameSinkManager() + 424
 
-/Users/baltaymarci/Documents/Feel Good AI/Analysis/venv/lib/python3.9/site-packages/kaleido/executable/kaleido: line 5: 24210 Trace/BPT trap: 5       "./bin/kaleido" "$@"
+/Users/baltaymarci/Documents/Feel Good AI/Analysis/venv/lib/python3.9/site-packages/kaleido/executable/kaleido: line 5: 36342 Trace/BPT trap: 5       "./bin/kaleido" "$@"
 ]
 ```
 
