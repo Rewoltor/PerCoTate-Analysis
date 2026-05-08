@@ -1,4 +1,3 @@
-PAPER OUTLINE — FOR CO-AUTHOR REVIEW
 The Accuracy Paradox in AI-Assisted Medical Annotation
 Ground Truth Noise Suppresses Psychometric Signals and Distorts Behavioral Metrics in Non-Expert Knee Osteoarthritis Grading — A Platinum Standard MRMC Crossover Study
 
@@ -48,8 +47,8 @@ A field-level methodological warning: behavioral inference requires GT validatio
 
 2. BACKGROUND / RELATED WORK (~800 words)
 2.1 Non-expert annotation with AI assistance
-Establish what works (crowdsourcing for spatially distinct artifacts, Damgaard et al.; soft labels for ambiguous histology, Del Amor et al.), what does not (ordinal scales with high ambiguity), and what DANNY demonstrated (structured cognitive scaffolding enables non-experts to grade arthritis X-rays). End: DANNY and studies like it assume GT validity without testing it.
-2.2 The Kellgren-Lawrence scale: subjectivity as a structural feature (Borbély M.)
+Establish the DANNY framework as the direct predecessor: non-experts can grade knee OA with structured cognitive scaffolding and a sub-optimal AI. One or two key DANNY results to anchor the reader. End with the critical gap this study fills: DANNY and the broader annotation literature assumes GT validity without testing it.
+2.2 The Kellgren-Lawrence scale: subjectivity as a structural feature
 The KL scale's low IRR is not an anomaly in this study. It is a documented property of the instrument. Literature predicts exactly the κ values found here (0.181 full-scale, 0.517 binary). This legitimizes the Platinum Standard IRR figures and justifies binary classification and KL1 exclusion. The within-1-grade agreement of 84% confirms experts share a rough severity consensus even when exact grades diverge.
 2.3 Label noise in public medical imaging datasets
 The field knows public datasets are generically noisy. What the field has not studied is how this noise affects behavioral and psychometric inference, only model performance.
