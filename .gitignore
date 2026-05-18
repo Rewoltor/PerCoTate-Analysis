@@ -1,13 +1,74 @@
+# ==============================================================================
+# Feel Good AI / PerCoTate-Analysis - Robust Gitignore
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Python Environment & Caches
+# ------------------------------------------------------------------------------
 venv/
-__pycache__/
-.DS_Store
-.ipynb_checkpoints/
-scratch/
-*.pyc
-/report_assets
-
 .venv/
-/figures
-/Analysis_context
+env/
+.env
+.env.local
+.env.*.local
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+.eggs/
+*.egg-info/
 
+# ------------------------------------------------------------------------------
+# 2. Jupyter Notebook Caches
+# ------------------------------------------------------------------------------
+.ipynb_checkpoints/
 
+# ------------------------------------------------------------------------------
+# 3. Operating System Specific Files
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ------------------------------------------------------------------------------
+# 4. IDE & Editor Specific Files
+# ------------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# ------------------------------------------------------------------------------
+# 5. Generated Figures & Report Assets (Recursive)
+# ------------------------------------------------------------------------------
+# We ignore generated directories recursively to prevent binary image bloat, 
+# while keeping source files and notebooks clean.
+figures/
+report_assets/
+Analysis_context/
+
+# ------------------------------------------------------------------------------
+# 6. Temporary & Scratch Files
+# ------------------------------------------------------------------------------
+scratch/
+tmp/
+*.log
+
+# ------------------------------------------------------------------------------
+# 7. User-Specified Excluded Data Documents
+# ------------------------------------------------------------------------------
+# These specific administrative/draft documents are kept locally, while preserving
+# actual raw CSV data and necessary project-related PDFs in data/
+data/scientific_literature.md
+data/outline.md
+data/paper_outline_JAMIA.pdf
