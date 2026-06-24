@@ -1,0 +1,515 @@
+
+============================================================
+NOTEBOOK: /Users/baltaymarci/Documents/Feel Good AI/Analysis/old_GT_New_Analysis/NB0.1_demographics.ipynb
+============================================================
+
+--- Cell 1 Outputs ---
+Data Loading (Old GT Only Mode): 68 participants selected (from 68 initial).
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Total Recruited Cohort: N=68
+Final Analysis Cohort: N=51
+--- Cell 3 Outputs ---
+Age Range: 15 - 18 (Mean: 16.41, SD: 0.67)
+
+--- GENDER ---
+        Count  Percentage
+gender                   
+male       27        52.9
+female     24        47.1
+
+--- SCHOOL ---
+           Count  Percentage
+school                      
+secondary     46        90.2
+primary        5         9.8
+
+--- RESIDENCE ---
+           Count  Percentage
+residence                   
+budapest      36        70.6
+city          10        19.6
+village        5         9.8
+
+--- EXPERIENCE_LEVEL ---
+                  Count  Percentage
+experience_level                   
+none                 51       100.0
+
+--- HEALTHCARE_QUALIFICATION ---
+                          Count  Percentage
+healthcare_qualification                   
+none                         51       100.0
+
+--- TREATMENT_GROUP ---
+                 Count  Percentage
+treatment_group                   
+0                   27        52.9
+1                   24        47.1
+--- Cell 6 Outputs ---
+<Figure size 600x400 with 1 Axes>
+
+============================================================
+NOTEBOOK: /Users/baltaymarci/Documents/Feel Good AI/Analysis/old_GT_New_Analysis/NB0_data_quality.ipynb
+============================================================
+
+--- Cell 3 Outputs ---
+--- Pipeline Validation ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Strategy: exclude | Shape: (5100, 79) | Images: 50
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Strategy: clinical | Shape: (5100, 79) | Images: 50
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Strategy: sensitivity_1 | Shape: (5100, 79) | Images: 50
+--- Cell 5 Outputs ---
+--- Radiologist Inter-rater Reliability ---
+Fleiss Kappa (0-4 KL grades): 0.181
+95% CI: [0.042, 0.300]
+
+Fleiss Kappa (Binary, excluding KL1): 0.517
+95% CI: [0.175, 0.752]
+
+--- Pairwise Cohen's Kappa ---
+Rad1 vs rad2: 0.163 (95% CI: [-0.003, 0.340])
+Rad1 vs rad3: 0.117 (95% CI: [-0.075, 0.301])
+rad2 vs rad3: 0.298 (95% CI: [0.095, 0.486])
+
+Exact Agreement: 16.0%
+Exact + Adjacent (within 1 grade) Agreement: 84.0%
+--- Cell 7 Outputs ---
+--- 5x5 Transition Matrix (All 50 Images) ---
+gt_plat_kl   0   1   2  3  4  All
+gt_original                      
+0            6  14   5  0  0   25
+2            0   9   5  1  0   15
+3            0   0   3  5  1    9
+4            0   0   0  1  0    1
+All          6  23  13  7  1   50
+
+--- 3-Way Transition Table (All 50 Images) ---
+plat_3way  0   1   2
+orig_3way           
+0          6  14   5
+2          0   9  16
+
+Binomial test for directional bias (FN > FP): p=0.0312
+--- Cell 9 Outputs ---
+--- AI Confidence on Mislabeled Images ---
+Mean AI Confidence by Direction:
+label_direction
+fn_corrected    0.317100
+stable_neg      0.710433
+stable_pos      0.776156
+Name: ai_confidence, dtype: float64
+<Figure size 1000x600 with 1 Axes>
+Kruskal-Wallis testing AI confidence across subgroups:
+Statistic: 8.631, p-value: 0.0134
+--- Cell 11 Outputs ---
+--- Participant Data Quality ---
+<Figure size 1000x500 with 1 Axes>
+Speeders identified (mean duration < 8.2s): 0
+
+Missing Data Audit:
+phase1_video_watched    1296
+reverted_decision       1377
+symptom1                1377
+symptom2                1377
+dtype: int64
+Data Loading: 51 participants selected (from 68 initial).
+
+Data Quality Report Card:
+| Metric                               |   Value |
+|:-------------------------------------|--------:|
+| Total Participants                   |      51 |
+| Completed Both Sessions              |      51 |
+| Flagged Speeders                     |       0 |
+| Images with GT Shifts (Full Dataset) |      14 |
+
+============================================================
+NOTEBOOK: /Users/baltaymarci/Documents/Feel Good AI/Analysis/old_GT_New_Analysis/NB1_ground_truth_comparison.ipynb
+============================================================
+
+--- Cell 3 Outputs ---
+--- AI Model Performance ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+| strategy      | GT       |   acc |   sens |   spec |   ppv |   npv |    f1 |
+|:--------------|:---------|------:|-------:|-------:|------:|------:|------:|
+| exclude       | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| exclude       | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| clinical      | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| clinical      | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| sensitivity_1 | Original | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+| sensitivity_1 | Platinum | 0.700 |  0.680 |  0.720 | 0.708 | 0.692 | 0.694 |
+
+AI accuracy on the 5 false-negative images (predicted positive):
+Strategy exclude: nan%
+Strategy clinical: nan%
+Strategy sensitivity_1: nan%
+--- Cell 5 Outputs ---
+--- Human Performance ---
+
+Strategy: exclude
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Participant Delta: Better=0, Worse=0, Unchanged=51
+
+Strategy: clinical
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Participant Delta: Better=0, Worse=0, Unchanged=51
+
+Strategy: sensitivity_1
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Participant Delta: Better=0, Worse=0, Unchanged=51
+--- Cell 7 Outputs ---
+--- Reliance Metrics (Exclude Strategy) ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+|                   |   Original GT |   Platinum GT |
+|:------------------|--------------:|--------------:|
+| Over Reliance     |         0.156 |         0.156 |
+| Approp Skepticism |         0.144 |         0.144 |
+| Approp Reliance   |         0.509 |         0.509 |
+| Unwarranted Skep  |         0.191 |         0.191 |
+
+McNemar Tests for Reliance Shifts:
+Over Reliance shift p-value: 0.0
+--- Cell 9 Outputs ---
+--- Accuracy Paradox ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+<Figure size 1200x600 with 1 Axes>
+--- Cell 11 Outputs ---
+--- Wilcoxon Paired Test (Completers) ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Wilcoxon signed-rank test (AI vs Control accuracy, n=51): W=314.0, p=0.0030
+
+--- AI Influence Test ---
+Contingency table (Pre-AI vs Post-AI correct):
+human_correct_plat          False  True 
+human_initial_correct_plat              
+False                         826    184
+True                           59   1481
+McNemar test for AI Influence: p=0.0000
+
+============================================================
+NOTEBOOK: /Users/baltaymarci/Documents/Feel Good AI/Analysis/old_GT_New_Analysis/NB2_annotation_experiment.ipynb
+============================================================
+
+--- Cell 1 Outputs ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Setup Complete: Data loaded using 'exclude' strategy.
+--- Cell 3 Outputs ---
+--- Primary Accuracy Analysis (Fully Specified GEE) ---
+
+GEE Methods Specification (Copy for your manuscript):
+- Link Function: Logit (via Binomial family)
+- Clustering Variable: participant_id
+- Working Correlation Structure: Exchangeable
+
+Model Results:
+                                        Odds Ratio  Lower 95% CI  \
+Intercept                                    1.527         1.409   
+C(condition, Treatment('no_ai'))[T.ai]       1.232         1.083   
+
+                                        Upper 95% CI  p-value  
+Intercept                                      1.656    0.000  
+C(condition, Treatment('no_ai'))[T.ai]         1.401    0.002
+--- Cell 5 Outputs ---
+--- Crossover Design Analysis (MRMC) ---
+Model: Accuracy ~ Condition + Session
+                                        Odds Ratio  Lower 95% CI  \
+Intercept                                    1.514         1.360   
+C(condition, Treatment('no_ai'))[T.ai]       1.231         1.082   
+C(session)[T.2]                              1.018         0.896   
+
+                                        Upper 95% CI  p-value  
+Intercept                                      1.686    0.000  
+C(condition, Treatment('no_ai'))[T.ai]         1.400    0.002  
+C(session)[T.2]                                1.157    0.781  
+
+--- Carryover/Interaction Analysis ---
+Model: Accuracy ~ Condition * Session
+==========================================================================================================================
+                                                             coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------------------------
+Intercept                                                  0.3778      0.055      6.815      0.000       0.269       0.486
+C(condition, Treatment('no_ai'))[T.ai]                     0.2892      0.105      2.745      0.006       0.083       0.496
+C(session)[T.2]                                            0.0977      0.082      1.196      0.232      -0.062       0.258
+C(condition, Treatment('no_ai'))[T.ai]:C(session)[T.2]    -0.1635      0.144     -1.135      0.257      -0.446       0.119
+==========================================================================================================================
+
+Interpretation:
+1. If 'Condition' is significant in the first table, the AI benefit holds even after controlling for session order.
+2. If 'Session' is significant, it indicates a learning effect (participants got better/worse over time regardless of AI).
+3. If the Interaction term (Condition:Session) in the second table is NOT significant, it means there were no strong carryover effects.
+--- Cell 7 Outputs ---
+--- Human-AI Reliance Analysis ---
+| Metric                 |   Mean Rate |
+|:-----------------------|------------:|
+| over_reliance          |       0.156 |
+| appropriate_skepticism |       0.144 |
+| appropriate_reliance   |       0.509 |
+| unwarranted_skepticism |       0.191 |
+<Figure size 1200x600 with 1 Axes>
+--- AI Influence on Accuracy per Image ---
+<Figure size 1000x600 with 1 Axes>
+--- Cell 9 Outputs ---
+--- Confidence Analysis ---
+<Figure size 800x500 with 1 Axes>
+Paired t-test on Initial vs Final Confidence (AI cond): t=-10.273, p=0.0000
+Mean Initial: 5.059, Mean Final: 5.291
+
+Confidence change by AI Correctness:
+ai_correct_plat
+False    0.113725
+True     0.282353
+Name: conf_change, dtype: float64
+
+Overall Brier Score (Platinum GT): 0.259
+--- Cell 11 Outputs ---
+--- Global Efficiency Metrics ---
+Mean Duration Session 1: 17.81s
+Mean Duration Session 2: 15.14s
+Cohort Speedup (S1 -> S2): 14.95%
+
+--- AI-Driven Efficiency Analysis ---
+Mean Duration (Control): 7.29s
+Mean Duration (AI-Assisted): 25.66s
+AI Efficiency Gain: -252.13%
+Paired t-test (AI vs Control): t=21.251, p=0.0000
+Result: Statistically significant efficiency gain with AI assistance.
+
+--- Habituation (Early vs Late Trials) ---
+AI Speedup Rate: -5.95s improvement
+Control Speedup Rate: -0.50s improvement
+<Figure size 1000x500 with 1 Axes>
+--- Cell 13 Outputs ---
+--- Brittle Benefit / Withdrawal Effect ---
+TG=1 (AI first) Accuracy - Session 1 (AI): 0.661
+TG=1 (AI first) Accuracy - Session 2 (Control): 0.617
+Paired t-test (Session 1 vs 2): t=2.005, p=0.0569
+Wilcoxon test (Session 1 vs 2): W=70.5, p=0.0397
+
+============================================================
+NOTEBOOK: /Users/baltaymarci/Documents/Feel Good AI/Analysis/old_GT_New_Analysis/NB3_psychometrics.ipynb
+============================================================
+
+--- Cell 1 Outputs ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Setup Complete. N=51 participants loaded.
+--- Cell 3 Outputs ---
+--- Descriptive Psychometrics ---
+       big5_open_mindedness  big5_conscientiousness  big5_extraversion  \
+count             51.000000               51.000000          51.000000   
+mean               3.774118                3.383725           3.413529   
+std                0.627905                0.721642           0.704681   
+min                2.500000                1.920000           2.080000   
+25%                3.330000                2.830000           2.835000   
+50%                3.670000                3.330000           3.500000   
+75%                4.210000                4.040000           3.920000   
+max                4.920000                4.500000           5.000000   
+
+       big5_agreeableness  big5_neuroticism   iq_score  
+count           51.000000         51.000000  51.000000  
+mean             3.653725          2.979412   1.117647  
+std              0.512144          0.801105   1.632753  
+min              2.580000          1.420000   0.000000  
+25%              3.210000          2.420000   0.000000  
+50%              3.670000          3.000000   0.000000  
+75%              4.000000          3.500000   2.000000  
+max              4.670000          4.420000   6.000000
+<Figure size 800x600 with 2 Axes>
+Variance Inflation Factors (VIF > 5 indicates concern):
+                 Variable         VIF
+0                   const  141.316294
+1    big5_open_mindedness    1.468194
+2  big5_conscientiousness    1.349282
+3       big5_extraversion    1.366464
+4      big5_agreeableness    1.254144
+5        big5_neuroticism    1.258709
+6                iq_score    1.065864
+--- Cell 5 Outputs ---
+--- Spearman Correlations (FDR Corrected) ---
+   Condition                   Trait         r     p_raw     p_fdr
+2         ai       big5_extraversion -0.516408  0.000105  0.001258
+0         ai    big5_open_mindedness -0.132947  0.352355  0.745699
+1         ai  big5_conscientiousness  0.163732  0.250944  0.745699
+3         ai      big5_agreeableness  0.047661  0.739798  0.745699
+4         ai        big5_neuroticism -0.185311  0.192955  0.745699
+5         ai                iq_score  0.070979  0.620634  0.745699
+6      no_ai    big5_open_mindedness  0.069106  0.629906  0.745699
+7      no_ai  big5_conscientiousness  0.103968  0.467812  0.745699
+8      no_ai       big5_extraversion  0.046542  0.745699  0.745699
+9      no_ai      big5_agreeableness -0.125029  0.382017  0.745699
+10     no_ai        big5_neuroticism -0.170688  0.231093  0.745699
+11     no_ai                iq_score -0.068782  0.631518  0.745699
+
+--- GEE Model: Accuracy ~ Psychometrics + Condition ---
+==========================================================================================
+                             coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------
+Intercept                  0.6648      0.285      2.332      0.020       0.106       1.224
+C(condition)[T.no_ai]     -0.2088      0.066     -3.171      0.002      -0.338      -0.080
+iq_score                  -0.0005      0.023     -0.020      0.984      -0.045       0.044
+big5_neuroticism          -0.0470      0.049     -0.957      0.339      -0.143       0.049
+big5_conscientiousness     0.0788      0.049      1.605      0.109      -0.017       0.175
+big5_open_mindedness      -0.0420      0.070     -0.600      0.548      -0.179       0.095
+==========================================================================================
+--- Cell 7 Outputs ---
+--- Reliance Behavior Predictors ---
+                     Trait        Outcome         r     p_raw     p_fdr
+2   big5_conscientiousness  over_reliance -0.175229  0.218734  0.441361
+4        big5_extraversion  over_reliance  0.174502  0.220680  0.441361
+8         big5_neuroticism  over_reliance -0.218160  0.124063  0.441361
+0     big5_open_mindedness  over_reliance -0.145794  0.307335  0.461002
+6       big5_agreeableness  over_reliance -0.104309  0.466344  0.546083
+10                iq_score  over_reliance  0.086512  0.546083  0.546083
+
+--- GEE Model: Over-Reliance ~ Psychometrics ---
+====================================================================================
+                       coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Intercept           -1.4351      0.137    -10.462      0.000      -1.704      -1.166
+iq_score            -0.0088      0.028     -0.319      0.750      -0.063       0.045
+big5_neuroticism    -0.0830      0.045     -1.846      0.065      -0.171       0.005
+====================================================================================
+
+One-sided p-value for Neuroticism predicting higher Over-Reliance: p = 0.9675
+--- Cell 9 Outputs ---
+--- Facet-Level Exploratory Analysis ---
+<Figure size 1000x1500 with 2 Axes>
+--- Cell 11 Outputs ---
+--- GT Switch Robustness ---
+                        Platinum (OR)  Platinum (p)  Original (OR)  \
+Intercept                       1.944         0.020          1.944   
+C(condition)[T.no_ai]           0.812         0.002          0.812   
+iq_score                        1.000         0.984          1.000   
+big5_neuroticism                0.954         0.339          0.954   
+big5_conscientiousness          1.082         0.109          1.082   
+big5_open_mindedness            0.959         0.548          0.959   
+
+                        Original (p)  
+Intercept                      0.020  
+C(condition)[T.no_ai]          0.002  
+iq_score                       0.984  
+big5_neuroticism               0.339  
+big5_conscientiousness         0.109  
+big5_open_mindedness           0.548
+--- Cell 13 Outputs ---
+--- Hypothesis Test: Neuroticism x Condition Interaction ---
+Does AI assistance affect highly neurotic individuals differently?
+
+========================================================================================================================
+                                                           coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------------------------------------
+Intercept                                                0.4237      0.041     10.404      0.000       0.344       0.504
+C(condition, Treatment('no_ai'))[T.ai]                   0.2087      0.066      3.170      0.002       0.080       0.338
+neuroticism_z                                           -0.0513      0.047     -1.099      0.272      -0.143       0.040
+C(condition, Treatment('no_ai'))[T.ai]:neuroticism_z    -0.0031      0.072     -0.042      0.966      -0.144       0.138
+========================================================================================================================
+
+--- How to read this ---
+Look at the row: C(condition, Treatment('no_ai'))[T.ai]:neuroticism_z
+1. If it is SIGNIFICANT (P>|z| < 0.05) and POSITIVE: AI boosts accuracy for highly neurotic people MORE than for others.
+2. If it is SIGNIFICANT and NEGATIVE: AI boosts accuracy for highly neurotic people LESS than for others.
+3. If it is NOT SIGNIFICANT: The AI benefit is uniform, and Neuroticism doesn't change how much the AI helps.
+
+============================================================
+NOTEBOOK: /Users/baltaymarci/Documents/Feel Good AI/Analysis/old_GT_New_Analysis/NB4_integrated_models.ipynb
+============================================================
+
+--- Cell 1 Outputs ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Setup Complete.
+--- Cell 3 Outputs ---
+--- GEE Candidate Models ---
+Model Comparison (QIC - Lower is better):
+M0 (Null): 6729.43
+M1 (Condition): 6717.10
+M2 (+ Traits): 6713.43
+M3 (+ Image/AI): 6323.92
+
+--- Final Model (M3) Summary ---
+==========================================================================================================
+                                             coef    std err          z      P>|z|      [0.025      0.975]
+----------------------------------------------------------------------------------------------------------
+Intercept                                 -0.5891      0.267     -2.210      0.027      -1.112      -0.067
+C(condition, Treatment('no_ai'))[T.ai]     0.2256      0.071      3.183      0.001       0.087       0.365
+iq_score                                   0.0006      0.025      0.026      0.979      -0.048       0.049
+big5_neuroticism                          -0.0613      0.047     -1.300      0.194      -0.154       0.031
+big5_conscientiousness                     0.0690      0.055      1.248      0.212      -0.039       0.177
+gt_plat_kl                                 0.3868      0.061      6.316      0.000       0.267       0.507
+ai_correct_plat_int                        0.7554      0.063     12.025      0.000       0.632       0.879
+==========================================================================================================
+--- Cell 5 Outputs ---
+--- Mediation Analysis (Bootstrap 5000 iterations) ---
+Path A (Condition -> Confidence): -0.0329 (p=0.6691)
+Path B (Confidence -> Accuracy): 0.2426 (p=0.0000)
+Direct Effect (Condition -> Accuracy): 0.2227
+Point Estimate of Indirect Effect (A*B): -0.0080
+Computing Bootstrap CI (1000 iterations)...
+95% CI for Indirect Effect: [-0.0488, 0.0258]
+--- Cell 7 Outputs ---
+--- Moderation: Does Image Difficulty (KL) moderate AI benefit? ---
+=====================================================================================================================
+                                                        coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------
+Intercept                                            -0.0075      0.108     -0.070      0.944      -0.219       0.204
+C(condition, Treatment('no_ai'))[T.ai]                0.2235      0.121      1.850      0.064      -0.013       0.460
+gt_plat_kl                                            0.3751      0.070      5.343      0.000       0.238       0.513
+C(condition, Treatment('no_ai'))[T.ai]:gt_plat_kl    -0.0042      0.081     -0.051      0.959      -0.163       0.154
+=====================================================================================================================
+<Figure size 800x500 with 1 Axes>
+--- Cell 9 Outputs ---
+--- Publication Results Table ---
+|                                        |   ('M1 (Condition)', 'OR') |   ('M1 (Condition)', '2.5%') |   ('M1 (Condition)', '97.5%') |   ('M1 (Condition)', 'p-value') |   ('M2 (+Traits)', 'OR') |   ('M2 (+Traits)', '2.5%') |   ('M2 (+Traits)', '97.5%') |   ('M2 (+Traits)', 'p-value') |   ('M3 (Full)', 'OR') |   ('M3 (Full)', '2.5%') |   ('M3 (Full)', '97.5%') |   ('M3 (Full)', 'p-value') |
+|:---------------------------------------|---------------------------:|-----------------------------:|------------------------------:|--------------------------------:|-------------------------:|---------------------------:|----------------------------:|------------------------------:|----------------------:|------------------------:|-------------------------:|---------------------------:|
+| Intercept                              |                      1.527 |                        1.409 |                         1.656 |                           0     |                    1.457 |                      0.914 |                       2.321 |                         0.113 |                 0.555 |                   0.329 |                    0.936 |                      0.027 |
+| C(condition, Treatment('no_ai'))[T.ai] |                      1.232 |                        1.083 |                         1.401 |                           0.002 |                    1.232 |                      1.083 |                       1.402 |                         0.002 |                 1.253 |                   1.091 |                    1.44  |                      0.001 |
+| iq_score                               |                    nan     |                      nan     |                       nan     |                         nan     |                    1.001 |                      0.957 |                       1.046 |                         0.979 |                 1.001 |                   0.954 |                    1.05  |                      0.979 |
+| big5_neuroticism                       |                    nan     |                      nan     |                       nan     |                         nan     |                    0.945 |                      0.868 |                       1.029 |                         0.192 |                 0.94  |                   0.857 |                    1.032 |                      0.194 |
+| big5_conscientiousness                 |                    nan     |                      nan     |                       nan     |                         nan     |                    1.066 |                      0.964 |                       1.178 |                         0.212 |                 1.071 |                   0.961 |                    1.194 |                      0.212 |
+| gt_plat_kl                             |                    nan     |                      nan     |                       nan     |                         nan     |                  nan     |                    nan     |                     nan     |                       nan     |                 1.472 |                   1.306 |                    1.66  |                      0     |
+| ai_correct_plat_int                    |                    nan     |                      nan     |                       nan     |                         nan     |                  nan     |                    nan     |                     nan     |                       nan     |                 2.129 |                   1.882 |                    2.407 |                      0     |
+
+============================================================
+NOTEBOOK: /Users/baltaymarci/Documents/Feel Good AI/Analysis/old_GT_New_Analysis/NB5_figures.ipynb
+============================================================
+
+--- Cell 1 Outputs ---
+Setup complete. Ready to generate figures.
+--- Cell 2 Outputs ---
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+Data Loading (Old GT Only Mode): 51 participants selected (from 68 initial).
+--- Cell 4 Outputs ---
+Generating Fig 1: GT Transition Sankey
+kaleido export failed, you may need to install kaleido. Returning HTML instead.
+--- Cell 6 Outputs ---
+Generating Fig 2: Label Noise Summary
+<Figure size 3600x1500 with 2 Axes>
+--- Cell 8 Outputs ---
+Generating Fig 3: Accuracy Paradox
+Data Loading: 51 participants selected (from 68 initial).
+<Figure size 3000x1800 with 1 Axes>
+--- Cell 10 Outputs ---
+Generating Fig 4: Reliance Taxonomy
+<Figure size 3600x1800 with 1 Axes>
+--- Cell 12 Outputs ---
+Generating Fig 5: AI Confidence on Mislabeled Images
+<Figure size 2400x1500 with 1 Axes>
+--- Cell 14 Outputs ---
+Generating Fig 6: Decision Flip Map
+<Figure size 4200x3000 with 2 Axes>
+--- Cell 16 Outputs ---
+Generating Fig 7: Calibration Curves
+<Figure size 2100x1500 with 1 Axes>
+--- Cell 18 Outputs ---
+Generating Fig 8: Psychometric Heatmap
+<Figure size 2400x1800 with 2 Axes>
+--- Cell 20 Outputs ---
+Generating Fig 9: Learning Curves
+<Figure size 2552.25x1500 with 1 Axes>
+--- Cell 22 Outputs ---
+Generating Fig 10: Model Comparison Coefficient Plot
+<Figure size 2400x1800 with 1 Axes>
